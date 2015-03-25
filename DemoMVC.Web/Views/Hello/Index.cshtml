@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html ng-app="myapp">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        產品名稱：<input type="text" name="Product" value="" ng-model="product" /> <br />
+        產品價格：<input type="text" name="Amount" value="" ng-model="amount" /> <br />
+        產品數量：<input type="number" name="Number" value="" ng-model="number" /> <br />
+        <hr />
+        您購買了{{ product }}，價格為 {{ amount }}，{{ number }}個，共{{ amount * number | currency }}元
+    </div>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script>
+        var app = angular("myapp", []);
+    </script>
+</body>
+</html>
