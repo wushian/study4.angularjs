@@ -11,6 +11,7 @@ namespace DemoMVC.Web.Controllers
         // GET: Hello
         public ActionResult Index()
         {
+
             return View();
         }
 
