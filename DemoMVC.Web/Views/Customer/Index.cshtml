@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>客戶列表</h2>
+
+<div class="container" ng-app="myapp" ng-controller="helloCtrl">
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>編號</th>
+                    <th>姓</th>
+                    <th>名</th>
+                    <th>職稱</th>
+                    <th>建立日期</th>
+                    <th>修改日期</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in model">
+                    <td>{{ item.Id }}</td>
+                    <td>{{ item.FirstName  }}</td>
+                    <td>{{ item.LastName }}</td>
+                    <td>{{ item.Position | clean }}</td>
+                    <td>{{ item.CreateTime | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                    <td>{{ item.ModifiedTime | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                    <td>
+                        <input type="button" class="btn btn-danger" value="刪除" ng-click="delete(item.Id)" />
+                        <input type="button" class="btn btn-primary" value="編輯" ng-click="revise(item)" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <input type="text" ng-model="customer.FirstName" placeholder="姓" class="form-control" maxlength="5" />
+        <input type="text" ng-model="customer.LastName" placeholder="名" class="form-control" maxlength="10" />
+        <input type="text" ng-model="customer.Position" placeholder="職稱" class="form-control" maxlength="5" />
+        <input type="button" class="btn btn-primary" value="新增" ng-click="create(customer)" ng-hide="isrevise" />
+        <input type="button" class="btn btn-primary" value="更新" ng-click="update(customer)" ng-show="isrevise" />
+        <input type="button" class="btn btn-default" value="取消" ng-show="isrevise" ng-click="isRevised(false)" />
+    </div>
+</div>
+
+
+

@@ -13,16 +13,16 @@
 
 
     產品名稱：<input type="text" name="Product" value="" id="Product" /> <br />
-    產品價格：<input type="text" name="Amount" value="" id="Amount" /> <br />
+    產品價格：<input type="text" name="Price" value="" id="Price" /> <br />
     產品數量：<input type="number" name="Number" value="" id="Number" /> <br />
-    您購買了<span id="spanProduct"></span>，價格為 <span id="spanAmount"></span>，
+    您購買了<span id="spanProduct"></span>，價格為 <span id="spanPrice"></span>，
     <span id="spanNumber"></span>個，共<span id="spanTotal"></span>元
 
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
         var Calculate = function () {
-            var result = parseInt($('#spanAmount').html()) * parseInt($('#spanNumber').html());
+            var result = parseInt($('#spanPrice').html()) * parseInt($('#spanNumber').html());
             $('#spanTotal').html(result);
         };
 
@@ -31,8 +31,8 @@
                 $('#spanProduct').html($(this).val());
             });
 
-            $('#Amount').change(function () {
-                $('#spanAmount').html($(this).val());
+            $('#Price').change(function () {
+                $('#spanPrice').html($(this).val());
                 Calculate();
             });
 

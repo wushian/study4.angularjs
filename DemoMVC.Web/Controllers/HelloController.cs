@@ -19,5 +19,10 @@ namespace DemoMVC.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult HelloAngular()
+        {
+            return View();
+        }
     }
 }

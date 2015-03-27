@@ -1,9 +1,7 @@
 ﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html ng-app="myapp">
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -12,14 +10,41 @@
 <body>
     <div>
         產品名稱：<input type="text" name="Product" value="" ng-model="product" /> <br />
-        產品價格：<input type="text" name="Amount" value="" ng-model="amount" /> <br />
+        產品價格：<input type="text" name="price" value="" ng-model="price" /> <br />
         產品數量：<input type="number" name="Number" value="" ng-model="number" /> <br />
-        <hr />
-        您購買了{{ product }}，價格為 {{ amount }}，{{ number }}個，共{{ amount * number | currency }}元
+
+        您購買了{{ product }}，價格為 {{ price }}，{{ number }}個，共{{ price * number | currency }}元
     </div>
+    <hr />
+    <study4header></study4header>
+    <hr />
+    <div ng-controller="helloCtrl">
+        <div ng-repeat="item in model">
+            {{ item }}
+        </div>
+    </div>
+    <hr />
     <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-resource.min.js"></script>
     <script>
-        var app = angular("myapp", []);
+        var app = angular.module("myapp", ['ngResource']);
+    </script>
+    <script src="~/App/directives/study4-header.js"></script>
+    <script src="~/App/services/hello-service.js"></script>
+    <script>
+        app.controller('helloCtrl', function ($scope, $http, HelloService) {
+            //$http.get('/api/Hello').success(function (data, status, headers, config) {
+            //    $scope.model = data;
+            //});
+
+            HelloService.query({ controller: 'Hello' }, function (data) {
+                $scope.model = data;
+            });
+
+            HelloService.save({ controller: 'Hello', Id: '99' }, function (data) {
+                $scope.model = data;
+            });
+        });
     </script>
 </body>
 </html>

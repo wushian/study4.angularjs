@@ -8,7 +8,6 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -38,6 +37,11 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/App/app.js"></script>
+    <script src="~/Scripts/angular-resource.min.js"></script>
+    <script src="~/App/services/customer-service.js"></script>
+    <script src="~/App/controllers/customer-controller.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
