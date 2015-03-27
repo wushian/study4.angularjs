@@ -191,6 +191,7 @@
     <Content Include="App\app.js" />
     <Content Include="App\controllers\customer-controller.js" />
     <Content Include="App\directives\study4-header.js" />
+    <Content Include="App\filters\filter-clean.js" />
     <Content Include="App\services\customer-service.js" />
     <Content Include="App\services\hello-service.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />

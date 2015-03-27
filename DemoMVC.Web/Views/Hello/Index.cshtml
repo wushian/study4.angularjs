@@ -7,18 +7,30 @@
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
 </head>
-<body>
+<body ng-controller="helloCtrl">
     <div>
-        產品名稱：<input type="text" name="Product" value="" ng-model="product" /> <br />
-        產品價格：<input type="text" name="price" value="" ng-model="price" /> <br />
-        產品數量：<input type="number" name="Number" value="" ng-model="number" /> <br />
-
-        您購買了{{ product }}，價格為 {{ price }}，{{ number }}個，共{{ price * number | currency }}元
+        <h1>購買商品</h1>
+        產品名稱：<input type="text" ng-model="name" /> <br />
+        產品價格：<input type="text" ng-model="price" /> <br />
+        產品數量：<input type="number" ng-model="number" /> <br />
+        您購買了{{ name }}，價格為 {{ price }}，{{ number }}個，共{{ price * number | currency }}元 <br />
+        <button ng-click="addList()">加入</button>
+        <div>
+            <table>
+                <tr ng-repeat="p in products">
+                    <td>{{ p.name }}</td>
+                    <td>{{ p.price }}</td>
+                    <td>{{ p.number }}</td>
+                </tr>
+            </table>
+        </div>
     </div>
     <hr />
+    <h1>Directive</h1>
     <study4header></study4header>
     <hr />
-    <div ng-controller="helloCtrl">
+    <h1>Angular.js Controller Get Ajax Data</h1>
+    <div>
         <div ng-repeat="item in model">
             {{ item }}
         </div>
@@ -26,24 +38,25 @@
     <hr />
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/angular-resource.min.js"></script>
-    <script>
-        var app = angular.module("myapp", ['ngResource']);
-    </script>
+    <script src="~/App/app.js"></script>
     <script src="~/App/directives/study4-header.js"></script>
     <script src="~/App/services/hello-service.js"></script>
     <script>
-        app.controller('helloCtrl', function ($scope, $http, HelloService) {
-            //$http.get('/api/Hello').success(function (data, status, headers, config) {
-            //    $scope.model = data;
-            //});
-
-            HelloService.query({ controller: 'Hello' }, function (data) {
+        app.controller('helloCtrl', function ($scope, $http) {
+            $http.get('/api/Hello').success(function (data, status, headers, config) {
                 $scope.model = data;
             });
-
-            HelloService.save({ controller: 'Hello', Id: '99' }, function (data) {
-                $scope.model = data;
-            });
+            $scope.products = [];
+            $scope.addList = function () {
+                $scope.products.push({
+                    name: $scope.name,
+                    price: $scope.price,
+                    number: $scope.number,
+                });
+                $scope.name = '';
+                $scope.price = '';
+                $scope.number = '';
+            };
         });
     </script>
 </body>

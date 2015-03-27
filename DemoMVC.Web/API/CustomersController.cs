@@ -49,7 +49,9 @@ namespace DemoMVC.Web.API
                 return BadRequest();
             }
 
+            customers.ModifiedTime = DateTime.Now;
             db.Entry(customers).State = EntityState.Modified;
+            
 
             try
             {
@@ -78,7 +80,8 @@ namespace DemoMVC.Web.API
             {
                 return BadRequest(ModelState);
             }
-
+            customers.CreateTime = DateTime.Now;
+            customers.ModifiedTime = DateTime.Now;
             db.Customers.Add(customers);
             db.SaveChanges();
 
